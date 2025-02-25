@@ -53,7 +53,7 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("multiplied by")) {
-    const match = query.match(/(\d+)\s+multiplied\s+(\d+)/);
+    const match = query.match(/(\d+)\s+multiplied by\s+(\d+)/);
     return match ? String(parseInt(match[1]) * parseInt(match[2])) : "";
   }
 
