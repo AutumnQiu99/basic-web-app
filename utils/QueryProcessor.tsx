@@ -96,6 +96,11 @@ export default function QueryProcessor(query: string): string {
     return match ? String(parseInt(match[1]) / parseInt(match[2])) : "";
   }
 
+  if (query.toLowerCase().includes("to the power of")) {
+    const match = query.match(/(\d+)\s+to the power of\s+(\d+)/);
+    return match ? String(parseInt(match[1]) ** parseInt(match[2])) : "";
+  }
+
   return "";
 }
 
