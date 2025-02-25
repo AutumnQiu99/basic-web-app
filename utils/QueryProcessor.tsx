@@ -87,6 +87,11 @@ export default function QueryProcessor(query: string): string {
   }
   
 
+  if (query.toLowerCase().includes("minus")) {
+    const match = query.match(/(\d+)\s+minus\s+(\d+)/);
+    return match ? String(parseInt(match[1]) - parseInt(match[2])) : "";
+  }
+
   return "";
 }
 
