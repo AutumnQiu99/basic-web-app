@@ -85,11 +85,15 @@ export default function QueryProcessor(query: string): string {
     // Filter prime numbers
     return String(numbers.filter(isPrime));
   }
-  
 
   if (query.toLowerCase().includes("minus")) {
     const match = query.match(/(\d+)\s+minus\s+(\d+)/);
     return match ? String(parseInt(match[1]) - parseInt(match[2])) : "";
+  }
+
+  if (query.toLowerCase().includes("divided by")) {
+    const match = query.match(/(\d+)\s+divided by\s+(\d+)/);
+    return match ? String(parseInt(match[1]) / parseInt(match[2])) : "";
   }
 
   return "";
