@@ -70,8 +70,11 @@ export default function QueryProcessor(query: string): string {
 
 
   if (query.toLowerCase().includes("largest:")) {
-    const match = query.match(/(\d+)\s+multiplied\s+(\d+)/);
-    return match ? String(parseInt(match[1]) * parseInt(match[2])) : "";
+    const matches = query.match(/\d+/g);
+    const numbers = matches ? matches.map(Number) : [];
+
+    // Find the largest number
+    return numbers.length > 0 ? String(Math.max(...numbers)) : "";
   }
   
 
