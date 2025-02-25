@@ -48,8 +48,16 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("plus")) {
-    const match = query.match(/(\d+)\s+plus\s+(\d+)/);
-    return match ? String(parseInt(match[1]) + parseInt(match[2])) : "";
+    // const match = query.match(/(\d+)\s+plus\s+(\d+)/);
+    // return match ? String(parseInt(match[1]) + parseInt(match[2])) : "";
+    // Extract numbers from the query
+    const matches = query.match(/\d+/g);
+    const numbers = matches ? matches.map(Number) : [];
+
+    // Calculate the sum of the numbers
+    const sum = numbers.reduce((acc, num) => acc + num, 0);
+
+    return sum.toString(); // Return the sum as a string
   }
 
   if (query.toLowerCase().includes("multiplied by")) {
