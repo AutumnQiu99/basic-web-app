@@ -76,7 +76,27 @@ export default function QueryProcessor(query: string): string {
     // Find the largest number
     return numbers.length > 0 ? String(Math.max(...numbers)) : "";
   }
+
+  if (query.toLowerCase().includes("primes:")) {
+    // Extract numbers from the query (handle potential null)
+    const matches = query.match(/\d+/g);
+    const numbers = matches ? matches.map(Number) : [];
+
+    // Filter prime numbers
+    return String(numbers.filter(isPrime));
+  }
   
 
   return "";
+}
+
+function isPrime(num: number): boolean {
+  // Handle numbers less than 2 (they are not prime)
+  if (num < 2) return false;
+
+  // Check for divisibility up to the square root of num
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;  // If divisible, it's not prime
+  }
+  return true;  // If no divisors, it's prime
 }
