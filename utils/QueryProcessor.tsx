@@ -105,8 +105,17 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.toLowerCase().includes("to the power of")) {
-    const match = query.match(/(\d+)\s+to the power of\s+(\d+)/);
-    return match ? String(parseInt(match[1]) ** parseInt(match[2])) : "";
+    // Extract the base and the exponent from the query
+    const matches = query.match(/(\d+)\s+to\s+the\s+power\s+of\s+(\d+)/);
+    if (!matches) return "Invalid query";
+
+    const base = Number(matches[1]);
+    const exponent = Number(matches[2]);
+
+    // Calculate the power
+    const result = Math.pow(base, exponent);
+
+    return result.toString(); // Return the result as a string
   }
 
   return "";
