@@ -52,11 +52,15 @@ export default function QueryProcessor(query: string): string {
     return match ? String(parseInt(match[1]) + parseInt(match[2])) : "";
   }
 
-  if (query.toLowerCase().includes("multiplied")) {
+  if (query.toLowerCase().includes("multiplied by")) {
     const match = query.match(/(\d+)\s+multiplied\s+(\d+)/);
     return match ? String(parseInt(match[1]) * parseInt(match[2])) : "";
   }
-  
+
+  if (query.toLowerCase().includes("square and a cube")) {
+    const match = query.match(/(\d+)\s+multiplied\s+(\d+)/);
+    return match ? String(parseInt(match[1]) * parseInt(match[2])) : "";
+  }
 
   return "";
 }
