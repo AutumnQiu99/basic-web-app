@@ -47,7 +47,10 @@ export default function QueryProcessor(query: string): string {
     return "88"
   }
 
-  
+  if (query.toLowerCase().includes("plus")) {
+    const match = query.match(/(\d+)\s+plus\s+(\d+)/);
+    return match ? String(parseInt(match[1]) + parseInt(match[2])) : "";
+  }
 
   return "";
 }
