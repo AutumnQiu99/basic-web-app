@@ -57,10 +57,23 @@ export default function QueryProcessor(query: string): string {
     return match ? String(parseInt(match[1]) * parseInt(match[2])) : "";
   }
 
-  if (query.toLowerCase().includes("square and a cube")) {
+  if (query.toLowerCase().includes("a square and a cube")) {
+    // Extract numbers from the query (handle potential null)
+    const matches = query.match(/\d+/g);
+    const numbers = matches ? matches.map(Number) : [];
+
+    // Check which numbers are perfect sixth powers
+    const sixthPowers = numbers.filter(num => Math.round(Math.pow(num, 1 / 6)) ** 6 === num);
+
+    return String(sixthPowers);
+  }
+
+
+  if (query.toLowerCase().includes("largest:")) {
     const match = query.match(/(\d+)\s+multiplied\s+(\d+)/);
     return match ? String(parseInt(match[1]) * parseInt(match[2])) : "";
   }
+  
 
   return "";
 }
